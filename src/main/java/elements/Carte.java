@@ -14,13 +14,26 @@ public class Carte {
      * */
     int [][] terrain;
 
-    /**
-     * La liste des aventuriers
-     */
-    List<Aventurier> aventuriers; //faire une map avec en key le nom??
+    
 
-    public Carte(int [][] terrain, List<Aventurier> aventuriers){
-        this.terrain = terrain;
-        this.aventuriers = aventuriers;
+    public Carte(int [][] terrain){
     }
+
+    public void ramasseTresor(int x, int y){
+    	if(terrain[x][y]>0)
+    		terrain[x][y]--;
+    }
+    
+    
+    
+    
+    
+	public int[][] getTerrain() {
+		return terrain;
+	}
+
+	public void setTerrain(int[][] terrain) {
+		this.terrain = terrain;
+	}    
+    
 }

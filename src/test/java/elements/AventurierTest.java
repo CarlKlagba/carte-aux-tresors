@@ -6,10 +6,11 @@ import org.junit.Test;
 
 import elements.Aventurier;
 import elements.Orientation;
+import test.AbstractTest;
 
 import static org.junit.Assert.*;
 
-public class AventurierTest {
+public class AventurierTest extends AbstractTest{
 	
 	@Test
 	public void GivenNord_WhenDroite_ThenEst(){

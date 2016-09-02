@@ -3,7 +3,7 @@ package elements;
 /**
  * Created by Travail on 29/08/2016.
  */
-public class Aventurier {
+public class Aventurier implements Cloneable{
     String nom;
     int positionX;
     int positionY;
