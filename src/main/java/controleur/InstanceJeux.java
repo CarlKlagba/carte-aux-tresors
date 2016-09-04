@@ -29,7 +29,13 @@ public class InstanceJeux {
 			this.aventuriers.put(a.getNom(), a);
 		}
 	}
-	
+
+
+	public void run(){
+		
+	}
+
+
 	public void ramasse(String nom){
 		Aventurier a = aventuriers.get(nom);
 		a.ramasseTresor(carte.ramasseTresor(a.getPositionX(), a.getPositionY()));

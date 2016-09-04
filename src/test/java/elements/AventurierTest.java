@@ -15,7 +15,7 @@ public class AventurierTest extends AbstractTest{
 	@Test
 	public void GivenNord_WhenDroite_ThenEst(){
 		
-		Aventurier aventurier = new Aventurier("John",1,1, Orientation.NORD);
+		Aventurier aventurier = new Aventurier("John",1,1, Orientation.NORD,"");
 		aventurier.rotationDroite();
 		assertEquals(Orientation.EST,aventurier.getOrientation() );
 	}
@@ -24,7 +24,7 @@ public class AventurierTest extends AbstractTest{
 	
 	@Test
 	public void GivenNord_WhenGauche_ThenOuest(){
-		Aventurier aventurier = new Aventurier("John",1,1, Orientation.NORD);
+		Aventurier aventurier = new Aventurier("John",1,1, Orientation.NORD,"");
 		aventurier.rotationGauche();
 		assertEquals(Orientation.OUEST, aventurier.getOrientation() );
 	}
@@ -35,7 +35,7 @@ public class AventurierTest extends AbstractTest{
 		int expectedPosX = 2;
 		int expectedPosY = 1;
 		
-		Aventurier aventurier = new Aventurier("John",1,1, Orientation.EST);
+		Aventurier aventurier = new Aventurier("John",1,1, Orientation.EST,"");
 		aventurier.avance();
 		assertEquals(expectedPosX, aventurier.getPositionX());
 		assertEquals(expectedPosY, aventurier.getPositionY());		
@@ -46,7 +46,7 @@ public class AventurierTest extends AbstractTest{
 		int expectedPosX = 1;
 		int expectedPosY = 2;
 		
-		Aventurier aventurier = new Aventurier("John",1,1, Orientation.SUD);
+		Aventurier aventurier = new Aventurier("John",1,1, Orientation.SUD,"");
 		aventurier.avance();
 		assertEquals(expectedPosX, aventurier.getPositionX());
 		assertEquals(expectedPosY, aventurier.getPositionY());		
@@ -58,7 +58,7 @@ public class AventurierTest extends AbstractTest{
 		int expectedPosX = 1;
 		int expectedPosY = 1;
 		
-		Aventurier aventurier = new Aventurier("John",2,1, Orientation.OUEST);
+		Aventurier aventurier = new Aventurier("John",2,1, Orientation.OUEST,"");
 		aventurier.avance();
 		assertEquals(expectedPosX, aventurier.getPositionX());
 		assertEquals(expectedPosY, aventurier.getPositionY());		
@@ -69,7 +69,7 @@ public class AventurierTest extends AbstractTest{
 		int expectedPosX = 1;
 		int expectedPosY = 1;
 		
-		Aventurier aventurier = new Aventurier("John",1,2, Orientation.NORD);
+		Aventurier aventurier = new Aventurier("John",1,2, Orientation.NORD,"");
 		aventurier.avance();
 		assertEquals(expectedPosX, aventurier.getPositionX());
 		assertEquals(expectedPosY, aventurier.getPositionY());		

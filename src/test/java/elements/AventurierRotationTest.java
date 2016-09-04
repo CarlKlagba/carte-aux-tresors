@@ -25,7 +25,7 @@ public class AventurierRotationTest {
 //	@Test
 //	 @Parameters( name = "provideFourOfAKind")
 	public void GivenNord_WhenDroite_ThenEst(){
-		Aventurier aventurier = new Aventurier("John",1,1, Orientation.NORD);
+		Aventurier aventurier = new Aventurier("John",1,1, Orientation.NORD, "");
 	}
 	
 }

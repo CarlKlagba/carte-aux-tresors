@@ -17,7 +17,7 @@ public class InstanceJeuxTest extends AbstractTest{
 	
 	@Test
 	public void GivenJohn11E_WhenAvanceIntoPlain_ThenJohn21E(){
-		Aventurier aventurier = new Aventurier("John", 1, 1, Orientation.EST);
+		Aventurier aventurier = new Aventurier("John", 1, 1, Orientation.EST,"");
 		Carte carte = new Carte(terrain3x3());
 		List<Aventurier> aventuriers = new ArrayList<Aventurier>();
 		aventuriers.add(aventurier);
@@ -35,7 +35,7 @@ public class InstanceJeuxTest extends AbstractTest{
 	
 	@Test
 	public void GivenJohn11E_WhenAvanceIntoMontagne_ThenJohn11E(){
-		Aventurier aventurier = new Aventurier("John", 1, 1, Orientation.EST);
+		Aventurier aventurier = new Aventurier("John", 1, 1, Orientation.EST,"");
 		Carte carte = new Carte(terrain3x3Montagne21());
 		List<Aventurier> aventuriers = new ArrayList<Aventurier>();
 		aventuriers.add(aventurier);
@@ -53,7 +53,7 @@ public class InstanceJeuxTest extends AbstractTest{
 	
 	@Test
 	public void GivenJohn22E_WhenAvanceOutofBound_ThenJohn22E(){
-		Aventurier aventurier = new Aventurier("John", 2, 2, Orientation.EST);
+		Aventurier aventurier = new Aventurier("John", 2, 2, Orientation.EST,"");
 		Carte carte = new Carte(terrain3x3Montagne21());
 		List<Aventurier> aventuriers = new ArrayList<Aventurier>();
 		aventuriers.add(aventurier);
@@ -71,7 +71,7 @@ public class InstanceJeuxTest extends AbstractTest{
 
 	@Test
 	public void GivenJohn11E_WhenAvanceTresor_ThenJohn21E(){
-		Aventurier aventurier = new Aventurier("John", 1, 1, Orientation.EST);
+		Aventurier aventurier = new Aventurier("John", 1, 1, Orientation.EST,"");
 		Carte carte = new Carte(terrain3x3Tresor());
 		List<Aventurier> aventuriers = new ArrayList<Aventurier>();
 		aventuriers.add(aventurier);
@@ -90,7 +90,7 @@ public class InstanceJeuxTest extends AbstractTest{
 
 	@Test
 	public void GivenJohn21E_AndTresor3_21_WhenRamasse_ThenJohnTresor3(){
-		Aventurier aventurier = new Aventurier("John", 2, 1, Orientation.EST);
+		Aventurier aventurier = new Aventurier("John", 2, 1, Orientation.EST,"");
 		Carte carte = new Carte(terrain3x3Tresor());
 		List<Aventurier> aventuriers = new ArrayList<Aventurier>();
 		aventuriers.add(aventurier);
