@@ -30,12 +30,28 @@ public class InstanceJeux {
 		}
 	}
 	
-	
+	public void ramasse(String nom){
+		Aventurier a = aventuriers.get(nom);
+		a.ramasseTresor(carte.ramasseTresor(a.getPositionX(), a.getPositionY()));
+	}
+
 	public void avance(String nom){
 		Aventurier a = aventuriers.get(nom);
-		
-		Aventurier aFutur;
-	
+		Aventurier aFutur = Aventurier.newInstance(a);
+		aFutur.avance();
+
+		// Out of Bound
+		if(aFutur.getPositionX()<0
+				|| aFutur.getPositionY()<0
+				|| aFutur.getPositionX()>=this.carte.getLimitX()
+				|| aFutur.getPositionY()>=this.carte.getLimitY()){
+			return;
+		}
+
+		//Une plaine ou un trésor
+		if(carte.getTerrain()[aFutur.getPositionX()][aFutur.getPositionY()] >= 0){
+			aventuriers.put(nom, aFutur);
+		}
 	}
 
 

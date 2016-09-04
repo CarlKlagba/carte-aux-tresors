@@ -7,14 +7,28 @@ public class Aventurier implements Cloneable{
     String nom;
     int positionX;
     int positionY;
+	int numTresor;
     Orientation orientation;
 
     public Aventurier(String nom, int positionX, int positionY, Orientation orientation) {
-        this.nom =nom;
+        this.nom = nom;
         this.positionX = positionX;
         this.positionY = positionY;
         this.orientation = orientation;
-    }
+		this.numTresor = 0;
+	}
+
+	public static Aventurier newInstance(Aventurier aventurier){
+		Aventurier a = 	new Aventurier(aventurier.getNom(), aventurier.getPositionX(),
+			aventurier.getPositionY(),aventurier.getOrientation());
+		a.setNumTresor(aventurier.getNumTresor());
+
+		return a;
+	}
+
+	public void ramasseTresor(int numTresor){
+		this.numTresor += numTresor;
+	}
 
     public void avance(){
     	switch (orientation){
@@ -107,6 +121,9 @@ public class Aventurier implements Cloneable{
 	public void setOrientation(Orientation orientation) {
 		this.orientation = orientation;
 	}
-    
+
+	public int getNumTresor() { return numTresor;}
+
+	public void setNumTresor(int numTresor) { this.numTresor = numTresor; }
     
 }

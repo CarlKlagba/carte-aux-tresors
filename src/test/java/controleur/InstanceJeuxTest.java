@@ -68,5 +68,40 @@ public class InstanceJeuxTest extends AbstractTest{
 		assertEquals(2, instanceJeux.getAventuriers().get("John").getPositionY());
 		assertEquals(Orientation.EST, instanceJeux.getAventuriers().get("John").getOrientation());
 	}
-	
+
+	@Test
+	public void GivenJohn11E_WhenAvanceTresor_ThenJohn21E(){
+		Aventurier aventurier = new Aventurier("John", 1, 1, Orientation.EST);
+		Carte carte = new Carte(terrain3x3Tresor());
+		List<Aventurier> aventuriers = new ArrayList<Aventurier>();
+		aventuriers.add(aventurier);
+
+		InstanceJeux instanceJeux = new InstanceJeux(carte, aventuriers);
+
+
+		instanceJeux.avance("John");
+
+
+		assertEquals(2, instanceJeux.getAventuriers().get("John").getPositionX());
+		assertEquals(1, instanceJeux.getAventuriers().get("John").getPositionY());
+		assertEquals(Orientation.EST, instanceJeux.getAventuriers().get("John").getOrientation());
+	}
+
+
+	@Test
+	public void GivenJohn21E_AndTresor3_21_WhenRamasse_ThenJohnTresor3(){
+		Aventurier aventurier = new Aventurier("John", 2, 1, Orientation.EST);
+		Carte carte = new Carte(terrain3x3Tresor());
+		List<Aventurier> aventuriers = new ArrayList<Aventurier>();
+		aventuriers.add(aventurier);
+
+		InstanceJeux instanceJeux = new InstanceJeux(carte, aventuriers);
+
+
+		instanceJeux.ramasse("John");
+
+
+		assertEquals(3, instanceJeux.getAventuriers().get("John").getNumTresor());
+		assertEquals(0, carte.getTerrain()[2][1]);
+	}
 }

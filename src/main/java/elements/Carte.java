@@ -12,16 +12,29 @@ public class Carte {
      * Trésor > 0
      * Montagne < 0
      * */
-    int [][] terrain;
+    private int [][] terrain;
 
-    
+	private int limitX;
+	private int limitY;
 
     public Carte(int [][] terrain){
-    }
+    	this.terrain = terrain;
 
-    public void ramasseTresor(int x, int y){
-    	if(terrain[x][y]>0)
-    		terrain[x][y]--;
+		this.limitX = terrain.length;
+		this.limitY = terrain[0].length;
+	}
+
+	public Carte(int [][] terrain, int limitX, int limitY){
+		this.terrain = terrain;
+
+		this.limitX = limitX;
+		this.limitY = limitY;
+	}
+
+    public int ramasseTresor(int x, int y){
+		int numTresor = terrain[x][y];
+    	terrain[x][y]=0;
+		return numTresor;
     }
     
     
@@ -34,6 +47,21 @@ public class Carte {
 
 	public void setTerrain(int[][] terrain) {
 		this.terrain = terrain;
-	}    
-    
+	}
+
+	public int getLimitY() {
+		return limitY;
+	}
+
+	public void setLimitY(int limitY) {
+		this.limitY = limitY;
+	}
+
+	public int getLimitX() {
+		return limitX;
+	}
+
+	public void setLimitX(int limitX) {
+		this.limitX = limitX;
+	}
 }
