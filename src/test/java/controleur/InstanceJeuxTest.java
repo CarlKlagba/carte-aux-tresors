@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import initialiseur.Initialiseur;
 import org.junit.Test;
 
 import elements.Aventurier;
@@ -103,5 +104,25 @@ public class InstanceJeuxTest extends AbstractTest{
 
 		assertEquals(3, instanceJeux.getAventuriers().get("John").getNumTresor());
 		assertEquals(0, carte.getTerrain()[2][1]);
+	}
+
+	@Test
+	public void runTest(){
+		InstanceJeux ij = Initialiseur.initialise("carteSimple.txt", "johnAndJames.txt");
+
+		ij.run();
+
+		Aventurier john = ij.getAventuriers().get("John");
+		Aventurier james = ij.getAventuriers().get("James");
+
+		assertEquals("Le trésor n'a pas été ramassé",0,ij.getCarte().getTerrain()[0][3]);
+
+		assertEquals("Position en X de John n'est correcte",1, john.getPositionX());
+		assertEquals("Position en Y de John n'est correcte",2, john.getPositionY());
+		assertEquals("Le nombre de trésor de John n'est correcte",0, john.getNumTresor());
+
+		assertEquals("Position en X de James n'est correcte", 0, james.getPositionX());
+		assertEquals("Position en Y de James n'est correcte", 4, james.getPositionY());
+		assertEquals("Le nombre de trésor de James n'est correcte", 3, james.getNumTresor());
 	}
 }

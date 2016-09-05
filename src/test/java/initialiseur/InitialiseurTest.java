@@ -28,9 +28,9 @@ public class InitialiseurTest extends AbstractTest{
 
         //Limites
         assertEquals("la taille du terrain en X n'est pas correcte",
-                    5, carte.getTerrain().length);
+                    6, carte.getTerrain().length);
         assertEquals("la taille du terrain en Y n'est pas correcte",
-                    4, carte.getTerrain()[0].length);
+                    5, carte.getTerrain()[0].length);
         //Trésors
         assertEquals("Le trésor n'a pas été initialisé correctement",
                     1, carte.getTerrain()[3][1]);
@@ -61,5 +61,34 @@ public class InitialiseurTest extends AbstractTest{
 
         assertEquals("La liste des mouvement n'a pas été initialisée correctement",
                 "AADADAGA", john.getMouvements());
+    }
+
+    @Test
+    public void initialiseAventuriersTest_2Aventuriers() throws IOException, URISyntaxException, InitialisationException {
+        List<Aventurier> aventuriers = Initialiseur.initialiseAventuriers("johnAndJames.txt",new Carte(terrain(5,5)));
+        Aventurier john = aventuriers.get(0);
+        Aventurier james = aventuriers.get(1);
+
+        assertEquals("Le nom n'a pas été initialisé correctement",
+                "John", john.getNom());
+        assertEquals("La position en X n'a pas été initialisée correctement",
+                0, john.getPositionX());
+        assertEquals("La position en Y n'a pas été initialisée correctement",
+                0, john.getPositionY());
+        assertEquals("L'orientation n'a pas été initialisée correctement",
+                Orientation.EST, john.getOrientation());
+        assertEquals("La liste des mouvement n'a pas été initialisée correctement",
+                "AADADAGA", john.getMouvements());
+
+        assertEquals("Le nom n'a pas été initialisé correctement",
+                "James", james.getNom());
+        assertEquals("La position en X n'a pas été initialisée correctement",
+                3, james.getPositionX());
+        assertEquals("La position en Y n'a pas été initialisée correctement",
+                2, james.getPositionY());
+        assertEquals("L'orientation n'a pas été initialisée correctement",
+                Orientation.OUEST, james.getOrientation());
+        assertEquals("La liste des mouvement n'a pas été initialisée correctement",
+                "AAAGADAGA", james.getMouvements());
     }
 }

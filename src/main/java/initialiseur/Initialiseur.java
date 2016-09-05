@@ -90,8 +90,8 @@ public class Initialiseur {
 
     private static int[][] initialiseTerrain(String line){
         String[] splitLine =line.split(" ");
-        int x = Integer.parseInt(splitLine[1]) - 1;
-        int y = Integer.parseInt(splitLine[2]) - 1;
+        int x = Integer.parseInt(splitLine[1]);
+        int y = Integer.parseInt(splitLine[2]);
 
         int [][] terrain = new int[x][y];
         for (int i = 0; i < terrain.length; i++) {
@@ -134,7 +134,8 @@ public class Initialiseur {
         int y = Integer.parseInt(splitCoord[1]) - 1;
 
         // l'aventurier ne peux pas commencer sur une montagne
-        if(carte.getTerrain()[x][y] < 0){
+        if(carte.getTerrain()[x][y] < 0
+            || x <0|| y<0 || x>= carte.getLimitX() || x>= carte.getLimitY()){// Out of bound
             throw new InitialisationException();//
         }
 

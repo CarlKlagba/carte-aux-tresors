@@ -1,8 +1,6 @@
 package controleur;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import elements.Aventurier;
 import elements.Carte;
@@ -30,11 +28,37 @@ public class InstanceJeux {
 		}
 	}
 
-
+	/*commencer par faire un algo naif en faisant déplacer
+	* les joueurs les uns apres les autres
+	* sans conflit entre eux
+	* */
 	public void run(){
-		
+		for (String nom : aventuriers.keySet()){
+			Aventurier a = aventuriers.get(nom);
+			bouge(nom, a.getMouvements());
+		}
 	}
 
+	public void bouge(String nom, String mouvements){
+		List<String> listMouv = new ArrayList(Arrays.asList(mouvements.split("")));
+		for (String mouv: listMouv) {
+			if(mouv.equals("A")){
+				avance(nom);
+			}else if (mouv.equals("D")){
+				rotationDroite(nom);
+			}else if (mouv.equals("G")){
+				rotationGauche(nom);
+			}
+		}
+	}
+
+	public void rotationDroite(String nom){
+		aventuriers.get(nom).rotationDroite();
+	}
+
+	public void rotationGauche(String nom){
+		aventuriers.get(nom).rotationGauche();
+	}
 
 	public void ramasse(String nom){
 		Aventurier a = aventuriers.get(nom);
@@ -56,6 +80,8 @@ public class InstanceJeux {
 
 		//Une plaine ou un trésor
 		if(carte.getTerrain()[aFutur.getPositionX()][aFutur.getPositionY()] >= 0){
+			int tresors = carte.ramasseTresor(aFutur.getPositionX(),aFutur.getPositionY());
+			aFutur.ramasseTresor(tresors);
 			aventuriers.put(nom, aFutur);
 		}
 	}
@@ -82,7 +108,11 @@ public class InstanceJeux {
 	public void setAventuriers(Map<String, Aventurier> aventuriers) {
 		this.aventuriers = aventuriers;
 	}
-	
+
+
+	public void debugPrint(){
+
+	}
 	
 	
 }
