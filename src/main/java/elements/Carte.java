@@ -39,7 +39,25 @@ public class Carte {
     
     
     
-    
+    @Override
+    public String toString(){
+    	StringBuilder sb = new StringBuilder();
+    	for (int i = 0; i < terrain.length; i++) {
+    		for (int j = 0; j < terrain[i].length; j++) {
+    			if(terrain[i][j]<0){ //montagne
+    				sb.append("M ")
+    					.append(i+1).append("-").append(j+1)
+    					.append("\n");
+    			}else if(terrain[i][j]>0){ //Tresor
+    				sb.append("T ")
+	    				.append(i+1).append("-").append(j+1)
+						.append(" ").append(terrain[i][j])
+						.append("\n");
+    			}
+    		}
+		}
+    	return sb.toString();
+    }
     
 	public int[][] getTerrain() {
 		return terrain;

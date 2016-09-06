@@ -86,7 +86,16 @@ public class InstanceJeux {
 		}
 	}
 
-
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.carte).append("\n");
+		for (String nom : aventuriers.keySet()) {
+			sb.append(aventuriers.get(nom)).append("\n");
+		}
+		return sb.toString();
+	}
 	
 	
 	

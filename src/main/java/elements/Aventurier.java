@@ -91,7 +91,11 @@ public class Aventurier implements Cloneable{
     
     
     
-    
+    @Override
+    public String toString(){
+    	return this.nom + " " + (this.positionX+1) + "-" + (this.positionY+1) + " " 
+    			+ this.orientation.name() + " Tresors: "+numTresor;
+    }
     
     
 	public String getNom() {

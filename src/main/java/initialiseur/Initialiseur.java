@@ -11,6 +11,7 @@ import sun.invoke.empty.Empty;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,13 +43,14 @@ public class Initialiseur {
         return instanceJeux;
     }
 
-    public static Carte initialiseCarte(String carteFileName)
-            throws IOException, URISyntaxException, InitialisationException {
+    public static Carte initialiseCarte(String carteFileName) 
+    		throws IOException, URISyntaxException, InitialisationException {
        // ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         //File file = new File(classLoader.getResource(carteFileName).getFile());
         int[][] terrain;
-        Stream<String> stream = Files.lines(Paths.get(ClassLoader.getSystemResource(carteFileName).toURI()));
-
+        
+        Stream<String> stream = filePathToStream(carteFileName);
+        
         List<String> carteLigne = stream
                 .filter(line -> line.startsWith("C"))
                 .collect(Collectors.toList());
@@ -59,7 +61,7 @@ public class Initialiseur {
 
         terrain = initialiseTerrain(carteLigne.get(0));
 
-        stream = Files.lines(Paths.get(ClassLoader.getSystemResource(carteFileName).toURI()));
+        stream = filePathToStream(carteFileName);
         List<String> lines = stream
                 .collect(Collectors.toList());
 
@@ -70,18 +72,18 @@ public class Initialiseur {
                 terrain = initialiseMontagne(terrain, line);
             }
         }
-
+        stream.close();
         return new Carte(terrain);
     }
 
     public static List<Aventurier> initialiseAventuriers(String aventuriersFileName, Carte carte)
             throws URISyntaxException, IOException, InitialisationException {
         List<Aventurier> aventuriers = new ArrayList<>();
-        Stream<String> stream = Files.lines(Paths.get(ClassLoader.getSystemResource(aventuriersFileName).toURI()));
+        Stream<String> stream = filePathToStream(aventuriersFileName);
         List<String> aLigne = stream
                 .filter(line -> !line.startsWith("#")) //commentaire
                 .collect(Collectors.toList());
-
+        stream.close();
         for (String ligne: aLigne ) {
             aventuriers.add(initialiseAventurier(ligne, carte));
         }
@@ -155,5 +157,29 @@ public class Initialiseur {
 
         String mouvement = splitLine[3];
         return new Aventurier(name, x, y, orientation, mouvement);
+    }
+    /**
+     * Cree un Stream à partir d'un chemin de fichier
+     * si ce n'est pas un chemin absolu un vérifie si 
+     * le fichier n'est pas dans les resources
+     * @param filePath
+     * @return
+     */
+    private static Stream<String> filePathToStream(String filePath){
+    	Stream<String> stream = null;
+    	
+    	try {
+			stream = Files.lines(Paths.get(filePath));
+			return stream;
+		} catch (IOException e) {
+			//On continue pour verifier si le fichier est dans les resources
+		}
+    	
+    	try {
+			return Files.lines(Paths.get(ClassLoader.getSystemResource(filePath).toURI()));
+		} catch (IOException | URISyntaxException e) {
+			System.err.println("Erreur lors de la récupération du fichier "+filePath + " : " +e.getMessage());
+		}
+    	return null;
     }
 }
