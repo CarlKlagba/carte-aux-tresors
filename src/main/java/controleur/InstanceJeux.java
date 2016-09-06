@@ -17,7 +17,13 @@ public class InstanceJeux {
 	/**
      * La liste des aventuriers
      */
-   private  Map<String, Aventurier> aventuriers; //faire une map avec en key le nom??
+   private  Map<String, Aventurier> aventuriers;
+
+    /*
+     * Le nombre de tours (UN tour = TOUT les aventuriers ont effectué UN
+     *  mouvement) a un instant T de la partie
+     *  */
+    private int nbTours = 0;
     
     
 	public InstanceJeux(Carte carte, List<Aventurier> aventuriers){
@@ -33,31 +39,42 @@ public class InstanceJeux {
 	* sans conflit entre eux
 	* */
 	public void run(){
-		for (String nom : aventuriers.keySet()){
-			Aventurier a = aventuriers.get(nom);
-			bouge(nom, a.getMouvements());
-		}
+        this.nbTours = 0;
+        Boolean fin = false;
+        while (!fin){
+            fin = true;
+            for (String nom: aventuriers.keySet()){
+                try {
+                    //Le mouvement de {nom} à effectuer au tour {nbTour}
+                    String mouvement = this.aventuriers.get(nom).getMouvements().get(nbTours);
+                    bouge(nom, mouvement);
+                    fin = fin && false;
+                }catch (IndexOutOfBoundsException e){ //il a fait tout ces mouvements
+                    fin = fin && true; //si tout les aventuriers on fini, le jeux fini
+                }
+            }
+            nbTours++;
+        }
 	}
 
-	public void bouge(String nom, String mouvements){
-		List<String> listMouv = new ArrayList(Arrays.asList(mouvements.split("")));
-		for (String mouv: listMouv) {
-			if(mouv.equals("A")){
-				avance(nom);
-			}else if (mouv.equals("D")){
-				rotationDroite(nom);
-			}else if (mouv.equals("G")){
-				rotationGauche(nom);
-			}
-		}
+	public void bouge(String nom, String mouvement){
+        if(mouvement.equals("A")){
+            avance(nom);
+        }else if (mouvement.equals("D")){
+            rotationDroite(nom);
+        }else if (mouvement.equals("G")){
+            rotationGauche(nom);
+        }else if(mouvement.equals("R")){ //ramasse
+            ramasse(nom);
+        }
 	}
 
 	public void rotationDroite(String nom){
-		aventuriers.get(nom).rotationDroite();
+        aventuriers.get(nom).rotationDroite();
 	}
 
 	public void rotationGauche(String nom){
-		aventuriers.get(nom).rotationGauche();
+        aventuriers.get(nom).rotationGauche();
 	}
 
 	public void ramasse(String nom){
@@ -80,8 +97,11 @@ public class InstanceJeux {
 
 		//Une plaine ou un trésor
 		if(carte.getTerrain()[aFutur.getPositionX()][aFutur.getPositionY()] >= 0){
-			int tresors = carte.ramasseTresor(aFutur.getPositionX(),aFutur.getPositionY());
-			aFutur.ramasseTresor(tresors);
+			//Si c'est un trésor
+            if(carte.getTerrain()[aFutur.getPositionX()][aFutur.getPositionY()] > 0) {
+                //On rajoute l'action ramasser R au tour suivant
+                aFutur.getMouvements().add(nbTours+1,"R");
+            }
 			aventuriers.put(nom, aFutur);
 		}
 	}

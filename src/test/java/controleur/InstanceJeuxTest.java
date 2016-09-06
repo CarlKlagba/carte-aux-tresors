@@ -72,7 +72,9 @@ public class InstanceJeuxTest extends AbstractTest{
 
 	@Test
 	public void GivenJohn11E_WhenAvanceTresor_ThenJohn21E(){
-		Aventurier aventurier = new Aventurier("John", 1, 1, Orientation.EST, null);
+		List<String> mouvs = new ArrayList<>();
+		mouvs.add("A");
+		Aventurier aventurier = new Aventurier("John", 1, 1, Orientation.EST, mouvs);
 		Carte carte = new Carte(terrain3x3Tresor());
 		List<Aventurier> aventuriers = new ArrayList<Aventurier>();
 		aventuriers.add(aventurier);
@@ -86,6 +88,7 @@ public class InstanceJeuxTest extends AbstractTest{
 		assertEquals(2, instanceJeux.getAventuriers().get("John").getPositionX());
 		assertEquals(1, instanceJeux.getAventuriers().get("John").getPositionY());
 		assertEquals(Orientation.EST, instanceJeux.getAventuriers().get("John").getOrientation());
+		assertEquals("AR", String.join("", instanceJeux.getAventuriers().get("John").getMouvements()));
 	}
 
 
