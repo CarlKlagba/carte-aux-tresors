@@ -1,5 +1,6 @@
 package initialiseur;
 
+import com.sun.deploy.util.StringUtils;
 import elements.Aventurier;
 import elements.Orientation;
 import exception.InitialisationException;
@@ -60,7 +61,7 @@ public class InitialiseurTest extends AbstractTest{
                 Orientation.EST, john.getOrientation());
 
         assertEquals("La liste des mouvement n'a pas été initialisée correctement",
-                "AADADAGA", john.getMouvements());
+                "AADADAGA", String.join("",john.getMouvements()) );
     }
 
     @Test
@@ -78,7 +79,7 @@ public class InitialiseurTest extends AbstractTest{
         assertEquals("L'orientation n'a pas été initialisée correctement",
                 Orientation.EST, john.getOrientation());
         assertEquals("La liste des mouvement n'a pas été initialisée correctement",
-                "AADADAGA", john.getMouvements());
+                "AADADAGA", String.join("", john.getMouvements()) );
 
         assertEquals("Le nom n'a pas été initialisé correctement",
                 "James", james.getNom());
@@ -89,6 +90,6 @@ public class InitialiseurTest extends AbstractTest{
         assertEquals("L'orientation n'a pas été initialisée correctement",
                 Orientation.OUEST, james.getOrientation());
         assertEquals("La liste des mouvement n'a pas été initialisée correctement",
-                "AAAGADAGA", james.getMouvements());
+                "AAAGADAGA", String.join("", james.getMouvements()) );
     }
 }

@@ -1,5 +1,7 @@
 package elements;
 
+import java.util.List;
+
 /**
  * Created by Travail on 29/08/2016.
  */
@@ -9,11 +11,11 @@ public class Aventurier implements Cloneable{
     int positionY;
 	int numTresor;
     Orientation orientation;
-	String mouvements;
+	List<String> mouvements;
 
 
 
-	public Aventurier(String nom, int positionX, int positionY, Orientation orientation, String mouvements) {
+	public Aventurier(String nom, int positionX, int positionY, Orientation orientation,  List<String> mouvements) {
         this.nom = nom;
         this.positionX = positionX;
         this.positionY = positionY;
@@ -134,7 +136,7 @@ public class Aventurier implements Cloneable{
 
 	public void setNumTresor(int numTresor) { this.numTresor = numTresor; }
 
-	public String getMouvements() { return mouvements;}
+    public List<String> getMouvements() { return mouvements; }
 
-	public void setMouvements(String mouvements) {this.mouvements = mouvements;}
+    public void setMouvements(List<String> mouvements) { this.mouvements = mouvements; }
 }

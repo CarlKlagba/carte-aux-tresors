@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -155,12 +156,12 @@ public class Initialiseur {
             throw new InitialisationException();//
         }
 
-        String mouvement = splitLine[3];
-        return new Aventurier(name, x, y, orientation, mouvement);
+        List<String> mouvements = new ArrayList(Arrays.asList(splitLine[3].split(""))) ;
+        return new Aventurier(name, x, y, orientation, mouvements);
     }
     /**
-     * Cree un Stream à partir d'un chemin de fichier
-     * si ce n'est pas un chemin absolu un vérifie si 
+     * Cree un Stream ï¿½ partir d'un chemin de fichier
+     * si ce n'est pas un chemin absolu un vï¿½rifie si 
      * le fichier n'est pas dans les resources
      * @param filePath
      * @return
@@ -178,7 +179,7 @@ public class Initialiseur {
     	try {
 			return Files.lines(Paths.get(ClassLoader.getSystemResource(filePath).toURI()));
 		} catch (IOException | URISyntaxException e) {
-			System.err.println("Erreur lors de la récupération du fichier "+filePath + " : " +e.getMessage());
+			System.err.println("Erreur lors de la rï¿½cupï¿½ration du fichier "+filePath + " : " +e.getMessage());
 		}
     	return null;
     }
