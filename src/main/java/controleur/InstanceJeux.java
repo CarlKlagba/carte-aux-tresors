@@ -6,9 +6,9 @@ import elements.Aventurier;
 import elements.Carte;
 /*
  * Va creer la carte
- * et va executer les actions du jeux
+ * et va executer les actions du jeu
  * en s'assurant que toutes les actions
- * respecte des contraintes
+ * respectent des contraintes
  */
 public class InstanceJeux {
 	
