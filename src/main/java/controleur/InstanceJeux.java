@@ -45,8 +45,8 @@ public class InstanceJeux {
                     String mouvement = this.aventuriers.get(nom).getMouvements().get(nbTours);
                     bouge(nom, mouvement);
                     fin = fin && false;
-                }catch (IndexOutOfBoundsException e){ //il a fait tout ces mouvements
-                    fin = fin && true; //si tout les aventuriers on fini, le jeux fini
+                }catch (IndexOutOfBoundsException e){ //il a fait tout ses mouvements
+                    fin = fin && true; //si tout les aventuriers ont fini, le jeu fini
                 }
             }
             nbTours++;
