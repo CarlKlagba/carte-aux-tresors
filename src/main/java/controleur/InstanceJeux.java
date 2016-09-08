@@ -34,10 +34,6 @@ public class InstanceJeux {
 		}
 	}
 
-	/*commencer par faire un algo naif en faisant déplacer
-	* les joueurs les uns apres les autres
-	* sans conflit entre eux
-	* */
 	public void run(){
         this.nbTours = 0;
         Boolean fin = false;
