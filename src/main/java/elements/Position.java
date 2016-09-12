@@ -8,29 +8,14 @@ public class Position {
 		this.x = x;
 		this.y = y;
 	}
-
-//	@Override
-//	public boolean equals(Object object){
-//		boolean result = false;
-//		if(object == null || object.getClass() != getClass()){
-//			result = false;
-//		}else{
-//			Position p = (Position) object;
-//			if(this.x == p.getX()
-//				&& this.y == p.getY()) {
-//				result = true;
-//			}
-//		}
-//		return result;
-//	}
-	
-
-	
-	
 	
 	
 	public int getX() {
 		return x;
+	}
+	
+	public int getY() {
+		return y;
 	}
 	
 	@Override
@@ -57,10 +42,4 @@ public class Position {
 			return false;
 		return true;
 	}
-
-	public int getY() {
-		return y;
-	}
-
-	
 }
