@@ -1,11 +1,11 @@
 package elements;
 
-import exception.OutOfLimitsException;
-import exception.UnauthorizedActionException;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import exception.OutOfLimitsException;
+import exception.UnauthorizedActionException;
 import test.AbstractTest;
 
 /**
@@ -16,13 +16,11 @@ public class CarteTest extends AbstractTest {
     
     @Before
     public void setUp(){
-        carte = new Carte(listTresorsMontages(), new Position(6,5));
+        carte = getCarteSimple();
     }
     
     @Test
-    public void getCaseTest(){
-         
-
+    public void getCaseTest() throws OutOfLimitsException{
         Position positionMontagne = new Position(5,3);
         Position positionTresor1 = new Position(4,2);
         Position positionTresor2 = new Position(1,4);
@@ -33,29 +31,28 @@ public class CarteTest extends AbstractTest {
     }
 
     @Test
-    public void getCasePlainTest(){
-         
-
+    public void getCasePlainTest() throws OutOfLimitsException{
         Position positionPlaine = new Position(1,1);
 
         assertNull(carte.getCase(positionPlaine));
     }
 
     @Test(expected = OutOfLimitsException.class)
-    public void getCaseOutOfLimitsInX1Test(){
+    public void getCaseOutOfLimitsInX1Test() throws OutOfLimitsException{
         Position positionPlaine = new Position(7,1);
 
         carte.getCase(positionPlaine);
     }
 
     @Test(expected = OutOfLimitsException.class)
-    public void getCaseOutOfLimitsInY1Test(){Position positionPlaine = new Position(1,6);
+    public void getCaseOutOfLimitsInY1Test() throws OutOfLimitsException{
+    	Position positionPlaine = new Position(1,6);
 
         carte.getCase(positionPlaine);
     }
 
     @Test(expected = OutOfLimitsException.class)
-    public void getCaseOutOfLimitsInX2Test(){
+    public void getCaseOutOfLimitsInX2Test() throws OutOfLimitsException{
 
         Position positionPlaine = new Position(0,1);
 
@@ -63,7 +60,7 @@ public class CarteTest extends AbstractTest {
     }
 
     @Test(expected = OutOfLimitsException.class)
-    public void getCaseOutOfLimitsInY2Test(){
+    public void getCaseOutOfLimitsInY2Test() throws OutOfLimitsException{
 
         Position positionPlaine = new Position(1,0);
 
@@ -71,7 +68,7 @@ public class CarteTest extends AbstractTest {
     }
 
     @Test
-    public void ramasseTest(){
+    public void ramasseTest() throws OutOfLimitsException, UnauthorizedActionException{
         Position positionTresor1 = new Position(4,2);
         Position positionTresor2 = new Position(1,4);
 
@@ -80,16 +77,14 @@ public class CarteTest extends AbstractTest {
     }
 
     @Test(expected = UnauthorizedActionException.class)
-    public void ramasseMontagneTest(){
-
+    public void ramasseMontagneTest() throws OutOfLimitsException, UnauthorizedActionException{
         Position positionMontagne = new Position(5,3);
 
         carte.ramasse(positionMontagne);
     }
 
     @Test(expected = UnauthorizedActionException.class)
-    public void ramassePlaineTest(){
-
+    public void ramassePlaineTest() throws OutOfLimitsException, UnauthorizedActionException{
         Position positionPlain = new Position(1,1);
 
         carte.ramasse(positionPlain);

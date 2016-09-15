@@ -12,6 +12,15 @@ public class Position implements Comparable{
 	}
 	
 	
+	public boolean isGreaterThan(Position otherPosition){
+		return this.compareTo(otherPosition) > 0;
+	}
+
+	public boolean isLesserThan(Position otherPosition){
+		return this.compareTo(otherPosition) < 0;
+	}
+	
+	
 	public int getX() {
 		return x;
 	}
@@ -45,13 +54,7 @@ public class Position implements Comparable{
 		return true;
 	}
 
-	public boolean isGreaterThan(Position otherPosition){
-		return this.compareTo(otherPosition) > 0;
-	}
-
-	public boolean isLesserThan(Position otherPosition){
-		return this.compareTo(otherPosition) < 0;
-	}
+	
 
 	@Override
 	public int compareTo(Object other) {
@@ -59,8 +62,10 @@ public class Position implements Comparable{
 			if(this.x > ((Position)other).getX()
 					|| this.y > ((Position)other).getY()) {
 				return 1;
+			}else if (this.x == ((Position)other).getX() 
+					&& this.y == ((Position)other).getY()){
+				return 0;
 			}
-			return -1;
 		}
 		return -1;
 	}
