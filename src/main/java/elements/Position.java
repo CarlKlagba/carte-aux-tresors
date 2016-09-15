@@ -1,6 +1,8 @@
 package elements;
 
-public class Position {
+import java.util.Objects;
+
+public class Position implements Comparable{
 	private final int x;
 	private final int y;
 	
@@ -41,5 +43,25 @@ public class Position {
 		if (y != other.y)
 			return false;
 		return true;
+	}
+
+	public boolean isGreaterThan(Position otherPosition){
+		return this.compareTo(otherPosition) > 0;
+	}
+
+	public boolean isLesserThan(Position otherPosition){
+		return this.compareTo(otherPosition) < 0;
+	}
+
+	@Override
+	public int compareTo(Object other) {
+		if(other instanceof Position){
+			if(this.x > ((Position)other).getX()
+					|| this.y > ((Position)other).getY()) {
+				return 1;
+			}
+			return -1;
+		}
+		return -1;
 	}
 }

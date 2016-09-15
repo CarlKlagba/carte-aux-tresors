@@ -7,5 +7,8 @@ public abstract class Case {
 	public Case(Position position){
 		this.position = position;
 	}
-	
+
+	public Position getPosition(){
+		return position;
+	}
 }
