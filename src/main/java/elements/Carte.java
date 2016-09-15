@@ -1,26 +1,20 @@
 package elements;
 
 import exception.OutOfLimitsException;
+import exception.UnauthorizedActionException;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 /**
  * Created by Travail on 15/09/2016.
  */
 public class Carte {
-    Position limit;
+    private final Position limit;
     HashMap<Position, Case> mapCase;
 
-    public Carte(List<Case> listCase, Position limit){
+    public Carte(HashMap<Position, Case> mapCase, Position limit){
         this.limit = limit;
-
-        this.mapCase = listCase.stream().collect(
-                Collectors.toMap(Case::getPosition, Function.identity()) );
+        this.mapCase = mapCase;
     }
 
     public Case getCase(Position position) throws OutOfLimitsException {
@@ -30,5 +24,15 @@ public class Carte {
             throw new OutOfLimitsException();
         }
         return mapCase.get(position);
+    }
+    
+    public int ramasse(Position position) 
+    		throws OutOfLimitsException, UnauthorizedActionException {
+    	Case c = this.getCase(position);
+    	if(c != null && c instanceof Tresor){
+    		return ((Tresor)c).ramasse();
+    	}
+    	
+    	throw new UnauthorizedActionException();
     }
 }
