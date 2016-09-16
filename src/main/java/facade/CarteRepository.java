@@ -3,6 +3,7 @@ package facade;
 
 
 import elements.Carte;
+import exception.InitialisationException;
 
 public interface CarteRepository {
 	/**
@@ -10,5 +11,5 @@ public interface CarteRepository {
 	 * @param ressource
 	 * @return
 	 */
-	public Carte get(Ressource ressource);
+	public Carte get(Ressource ressource) throws InitialisationException;
 }
