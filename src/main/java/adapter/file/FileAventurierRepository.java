@@ -47,8 +47,8 @@ public class FileAventurierRepository extends FileRepository implements Aventuri
 
         String name = splitLine[0];
         String[] splitCoord = splitLine[1].split("-");
-        int x = Integer.parseInt(splitCoord[0]) - 1;
-        int y = Integer.parseInt(splitCoord[1]) - 1;
+        int x = Integer.parseInt(splitCoord[0]);
+        int y = Integer.parseInt(splitCoord[1]);
         
         Position position = new Position(x, y);
         
@@ -73,7 +73,7 @@ public class FileAventurierRepository extends FileRepository implements Aventuri
         }else if(o.equals("O")){
             orientation = Orientation.OUEST;
         }else{
-            throw new InitialisationException();//
+            throw new InitialisationException();
         }
 
         List<String> stringAction = new ArrayList(Arrays.asList(splitLine[3].split("")));
@@ -84,7 +84,6 @@ public class FileAventurierRepository extends FileRepository implements Aventuri
 	private List<Action> initialiseActions(List<String> stringAction){
 		List<Action> actions = (List<Action>) stringAction.stream()
 				.map(Util::stringToAction);
-		
 		return actions;
 	}
 	

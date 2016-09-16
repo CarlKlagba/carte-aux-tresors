@@ -35,10 +35,12 @@ public class FileCarteRepository extends FileRepository implements CarteReposito
 			if(carteLigne==null || carteLigne.isEmpty()) {
 	            throw new InitialisationException();
 	        }
-			
+
+
 			String line = carteLigne.get(0);
 	        Position limit =initialiseLimite(line);
-	        
+
+			stream = filePathToStream(carteFileName);
 	        List<String> lines = stream
 	                .collect(Collectors.toList());
 	        stream.close();

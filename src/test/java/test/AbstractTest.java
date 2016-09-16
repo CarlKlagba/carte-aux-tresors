@@ -33,7 +33,7 @@ public abstract class AbstractTest {
     }
     
     protected Carte getCarteSimple(){
-    	return new Carte(mapTresorsMontages(), new Position(6,5));
+        return new Carte(mapTresorsMontages(), new Position(6,5));
     }
     
     protected HashMap<String, Aventurier> getListAventurier(){
