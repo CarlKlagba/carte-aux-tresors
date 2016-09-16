@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public abstract class AbstractTest {
     protected HashMap<Position, Case> mapTresorsMontages(){
@@ -53,5 +51,11 @@ public abstract class AbstractTest {
     	aventuriers.add(a2);
     	
     	return Util.listAventurierToMapAventurier(aventuriers);
+    }
+    
+    protected  Aventurier getAventurier(){
+    	List<Action>listAction1 = 
+    			Arrays.asList(new Action[]{AVANCE, AVANCE, DROITE, AVANCE, DROITE, AVANCE, GAUCHE, AVANCE});
+    	return new Aventurier("John",new Position(1,1), Orientation.EST, listAction1 );
     }
 }

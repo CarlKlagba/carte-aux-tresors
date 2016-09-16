@@ -3,6 +3,8 @@ package facade;
 import java.util.HashMap;
 
 import elements.Aventurier;
+import elements.Carte;
+import exception.InitialisationException;
 
 public interface AventurierRepository {
 	
@@ -11,5 +13,5 @@ public interface AventurierRepository {
 	 * @param ressource
 	 * @return
 	 */
-	public HashMap<String, Aventurier> get(Ressource ressource);
+	public HashMap<String, Aventurier> get(Ressource ressource, Carte carte)throws InitialisationException;
 }

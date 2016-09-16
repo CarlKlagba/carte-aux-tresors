@@ -33,7 +33,12 @@ public class Aventurier {
 		nbTresor += tresor;
 	}
 	
-	
+	public static Aventurier newInstance(Aventurier aventurier){
+		Aventurier a = 	new Aventurier(aventurier.getNom(), aventurier.getPosition(),aventurier.getOrientation(), aventurier.getListAction());
+		a.setNbTresor(aventurier.getNbTresor());
+
+		return a;
+	}
 	
 	public List<Action> getListAction() {
 		return listAction;
@@ -66,6 +71,10 @@ public class Aventurier {
 
 	public int getNbTresor() {
 		return nbTresor;
+	}
+
+	public void setNbTresor(int nbTresor) {
+		this.nbTresor = nbTresor;
 	}
 	
 	

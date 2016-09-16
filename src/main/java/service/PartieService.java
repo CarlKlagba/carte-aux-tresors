@@ -5,6 +5,7 @@ import java.util.HashMap;
 import elements.Aventurier;
 import elements.Carte;
 import elements.Partie;
+import exception.InitialisationException;
 import facade.AventurierRepository;
 import facade.CarteRepository;
 import facade.Ressource;
@@ -22,9 +23,9 @@ public class PartieService {
 		this.resultatService = resultatService;
 	}
 	
-	public Partie creerPartie(Ressource ressourceCarte, Ressource ressourceAventurier){
+	public Partie creerPartie(Ressource ressourceCarte, Ressource ressourceAventurier) throws InitialisationException{
 		Carte carte = carteRepository.get(ressourceCarte);
-		HashMap<String, Aventurier> aventuriers = aventurierRepository.get(ressourceAventurier);
+		HashMap<String, Aventurier> aventuriers = aventurierRepository.get(ressourceAventurier, carte);
 		
 		return new Partie(aventuriers, carte);
 	}
